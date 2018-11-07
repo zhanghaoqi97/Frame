@@ -20,14 +20,14 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
     @Inject
     protected T mPresenter;
 
-    protected ActivityComponent getActivityComponent(){
-        return  DaggerActivityComponent.builder()
+    protected ActivityComponent getActivityComponent() {
+        return DaggerActivityComponent.builder()
                 .appComponent(App.getAppComponent())
                 .activityModule(getActivityModule())
                 .build();
     }
 
-    protected ActivityModule getActivityModule(){
+    protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
     }
 

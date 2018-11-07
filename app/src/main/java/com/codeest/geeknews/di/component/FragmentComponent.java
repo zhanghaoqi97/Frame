@@ -10,13 +10,7 @@ import com.codeest.geeknews.ui.gold.fragment.GoldMainFragment;
 import com.codeest.geeknews.ui.gold.fragment.GoldPagerFragment;
 import com.codeest.geeknews.ui.main.fragment.LikeFragment;
 import com.codeest.geeknews.ui.main.fragment.SettingFragment;
-import com.codeest.geeknews.ui.vtex.fragment.VtexPagerFragment;
 import com.codeest.geeknews.ui.wechat.fragment.WechatMainFragment;
-import com.codeest.geeknews.ui.zhihu.fragment.CommentFragment;
-import com.codeest.geeknews.ui.zhihu.fragment.DailyFragment;
-import com.codeest.geeknews.ui.zhihu.fragment.HotFragment;
-import com.codeest.geeknews.ui.zhihu.fragment.SectionFragment;
-import com.codeest.geeknews.ui.zhihu.fragment.ThemeFragment;
 
 import dagger.Component;
 
@@ -29,16 +23,6 @@ import dagger.Component;
 public interface FragmentComponent {
 
     Activity getActivity();
-
-    void inject(DailyFragment dailyFragment);
-
-    void inject(ThemeFragment themeFragment);
-
-    void inject(SectionFragment sectionFragment);
-
-    void inject(HotFragment hotFragment);
-
-    void inject(CommentFragment longCommentFragment);
 
     void inject(TechFragment techFragment);
 
@@ -54,5 +38,4 @@ public interface FragmentComponent {
 
     void inject(GoldPagerFragment goldPagerFragment);
 
-    void inject(VtexPagerFragment vtexPagerFragment);
 }

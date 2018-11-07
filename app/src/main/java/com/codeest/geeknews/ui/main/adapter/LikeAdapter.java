@@ -13,11 +13,8 @@ import com.codeest.geeknews.R;
 import com.codeest.geeknews.app.Constants;
 import com.codeest.geeknews.component.ImageLoader;
 import com.codeest.geeknews.model.bean.RealmLikeBean;
-import com.codeest.geeknews.presenter.vtex.VtexPresenter;
 import com.codeest.geeknews.ui.gank.activity.GirlDetailActivity;
 import com.codeest.geeknews.ui.gank.activity.TechDetailActivity;
-import com.codeest.geeknews.ui.vtex.activity.RepliesActivity;
-import com.codeest.geeknews.ui.zhihu.activity.ZhihuDetailActivity;
 
 import java.util.List;
 
@@ -66,20 +63,6 @@ public class LikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         if(holder instanceof ArticleViewHolder) {
             ((ArticleViewHolder) holder).title.setText(mList.get(position).getTitle());
             switch (mList.get(position).getType()) {
-                case Constants.TYPE_ZHIHU:
-                    if (mList.get(position).getImage() != null) {
-                        ImageLoader.load(mContext, mList.get(position).getImage(), ((ArticleViewHolder) holder).image);
-                    } else {
-                        ((ArticleViewHolder) holder).image.setImageResource(R.mipmap.ic_launcher);
-                    }
-                    ((ArticleViewHolder) holder).from.setText("来自 知乎");
-                    holder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            gotoDailyDetail(Integer.valueOf(mList.get(holder.getAdapterPosition()).getId()));
-                        }
-                    });
-                    break;
                 case Constants.TYPE_ANDROID:
                     ((ArticleViewHolder) holder).image.setImageResource(R.mipmap.ic_android);
                     ((ArticleViewHolder) holder).from.setText("来自 干货");
@@ -139,20 +122,6 @@ public class LikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                         }
                     });
                     break;
-                case Constants.TYPE_VTEX:
-                    if (mList.get(position).getImage() != null) {
-                        ImageLoader.load(mContext, VtexPresenter.parseImg(mList.get(position).getImage()), ((ArticleViewHolder) holder).image);
-                    } else {
-                        ((ArticleViewHolder) holder).image.setImageResource(R.mipmap.ic_launcher);
-                    }
-                    ((ArticleViewHolder) holder).from.setText("来自 V2EX");
-                    holder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            gotoVtexDetail(mList.get(holder.getAdapterPosition()).getId());
-                        }
-                    });
-                    break;
             }
         } else if(holder instanceof GirlViewHolder) {
             ImageLoader.load(mContext, mList.get(position).getImage(), ((GirlViewHolder) holder).image);
@@ -197,14 +166,6 @@ public class LikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
-    private void gotoDailyDetail(int id) {
-        Intent intent = new Intent();
-        intent.setClass(mContext, ZhihuDetailActivity.class);
-        intent.putExtra(Constants.IT_ZHIHU_DETAIL_ID, id);
-        intent.putExtra(Constants.IT_ZHIHU_DETAIL_TRANSITION, true);
-        mContext.startActivity(intent);
-    }
-
     private void gotoTechDetail(String url, String imgUrl, String title, String id, int type) {
         TechDetailActivity.launch(new TechDetailActivity.Builder()
                 .setContext(mContext)
@@ -223,10 +184,4 @@ public class LikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         mContext.startActivity(intent);
     }
 
-    private void gotoVtexDetail(String topicId) {
-        Intent intent = new Intent();
-        intent.setClass(mContext, RepliesActivity.class);
-        intent.putExtra(Constants.IT_VTEX_TOPIC_ID,topicId);
-        mContext.startActivity(intent);
-    }
 }

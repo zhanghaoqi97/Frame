@@ -8,10 +8,7 @@ import java.io.File;
  * Created by codeest on 2016/8/3.
  */
 public class Constants {
-
     //================= TYPE ====================
-
-    public static final int TYPE_ZHIHU = 101;
 
     public static final int TYPE_ANDROID = 102;
 
@@ -27,7 +24,6 @@ public class Constants {
 
     public static final int TYPE_GOLD = 108;
 
-    public static final int TYPE_VTEX = 109;
 
     public static final int TYPE_SETTING = 110;
 
