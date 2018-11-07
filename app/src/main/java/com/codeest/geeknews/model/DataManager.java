@@ -41,7 +41,7 @@ import io.reactivex.Flowable;
 
 public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
 
-    HttpHelper mHttpHelper;
+    HttpHelper mHttpHelper; 
     DBHelper mDbHelper;
     PreferencesHelper mPreferencesHelper;
 
